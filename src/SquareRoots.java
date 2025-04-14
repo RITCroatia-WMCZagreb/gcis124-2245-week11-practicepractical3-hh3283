@@ -1,4 +1,10 @@
 /*
+@ASSESSME.USERID: hh3283 
+@ASSESSME.AUTHOR: 
+@ASSESSME.DESCRIPTION: 
+@ASSESSME.ANALYZE: YES
+*/
+/*
  * 
  * 
 For this problem, you will calculate the square root of integers stored in a list.  Given that that the square root of a negative number is imaginary, you should not attempt to calculate the square root of any values that are less than 0.

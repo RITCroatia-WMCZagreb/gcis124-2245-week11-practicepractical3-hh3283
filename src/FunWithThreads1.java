@@ -1,3 +1,9 @@
+/*
+@ASSESSME.USERID: hh3283 
+@ASSESSME.AUTHOR: 
+@ASSESSME.DESCRIPTION: 
+@ASSESSME.ANALYZE: YES
+*/
 public class FunWithThreads1 {
 
 
@@ -8,12 +14,39 @@ public class FunWithThreads1 {
         System.out.println("MAIN END");
     }
 
-    public static void main(String[] args) throws Exception {
-        
-        new FunWithThreads1();
+    public static class MyThread implements Runnable{
+        private String name;
+        private int counter = 0;
+        private Object lock = new Object();
 
+        MyThread(String name,int counter){
+            this.name = name;
+            this.counter = counter;
+        }
+
+        @Override
+        public void run() {
+            while (counter<10) {
+                synchronized(lock){
+                    System.out.println(this.name+" "+counter);
+                    counter++;
+                    lock.notify();
+                }
+            }
+        }
+        
     }
 
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread("Thread 1", 0);
+        MyThread t2 = new MyThread("Thread 2", 0);
+        Thread thread1 = new Thread(t1);
+        Thread thread2 = new Thread(t2);
+        thread1.start();
+        thread2.start();
+
+
+    }
     /*
      * 
      * 
